@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>智慧识车</title>
+</head>
+<body>
+<h2>智慧识车</h2>
+
+
+<div>
+    <form method="post" action="up_photo" enctype="multipart/form-data">
+    <input type="file" size="30" name="photo"/>
+    <br>
+    <input type="submit" value="提交信息" class="button-new" style="margin-top:15px;"/>
+    </form>
+</div>
+<div align="center">
+    <form method="get" action="userlogin" enctype="multipart/form-data">
+        username:<imput type="text" name="uname"></imput><br>
+        password:<imput type="password" name="upsd"></imput><br>
+        <input type="submit">
+    </form>
+</div>
+
+<img src="{{ url_for('static', filename='test.jpg') }}" width="400" height="400" alt="你的图片被外星人劫持了～～"/>
+{{ decres }}
+<footer>
+<small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+</footer>
+</body>
+</html>
