@@ -37,7 +37,7 @@ def userLogin():
     return render_template('index.html')
 
 # 上传文件
-@app.route('/up_photo', methods=['POST'], strict_slashes=False)
+@app.route('/up_photo', methods=['POST','GET'], strict_slashes=False)
 def api_upload():
     file_dir = os.path.join(basedir, app.config['UPLOAD_FOLDER'])
     if not os.path.exists(file_dir):
