@@ -69,9 +69,9 @@ def api_upload():
         if content:
             res = json.loads(content, encoding='UTF8')
             print(res["result"][0])
-        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0]},ensure_ascii=False)
+        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0]}, ensure_ascii=False)
     else:
-        return jsonify({"error": 1001, "msg": "upload fail"})
+        return json.dumps({"success": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
 @app.route('/download/<string:filename>', methods=['GET'])
