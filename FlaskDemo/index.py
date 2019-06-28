@@ -9,13 +9,14 @@ import base64
 import urllib.parse
 import urllib.request
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)   #路由匹配
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF'])
-
+CORS(app, resources=r'/*')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
