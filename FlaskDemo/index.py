@@ -4,12 +4,14 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, jsonify, request, make_response, send_from_directory, abort, url_for, redirect
 import time
 import os
-from strUtil import Pic_str
+#from strUtil import Pic_str
+from useModel import vehicledect
 import base64
 import urllib.parse
 import urllib.request
 import json
 from flask_cors import CORS
+
 
 app = Flask(__name__)   #路由匹配
 UPLOAD_FOLDER = 'static'
@@ -48,12 +50,14 @@ def api_upload():
         fname = secure_filename(f.filename)
         print(fname)
         ext = fname.rsplit('.', 1)[1]
-        #new_filename = Pic_str().create_uuid() + '.' + ext
+        # new_filename = Pic_str().create_uuid() + '.' + ext
         new_filename = 'test.' + ext
         f.save(os.path.join(file_dir, new_filename))
-
+        # 本地模型的分类
+        detector = vehicledect()
+        carModel = detector.train()
+        # 向百度发送请求
         request_url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car"
-
         # 二进制方式打开图片文件
         file_path = os.path.join(file_dir, new_filename)
         f = open(file_path, 'rb')
@@ -70,7 +74,7 @@ def api_upload():
         if content:
             res = json.loads(content, encoding='UTF8')
             print(res["result"][0])
-        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0]}, ensure_ascii=False)
+        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0],'车的种类:':carModel}, ensure_ascii=False)
     else:
         return json.dumps({"success": 0, "msg": "upload fail"}, ensure_ascii=False)
 
