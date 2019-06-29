@@ -132,7 +132,7 @@ class vehicledect:
                 print("训练结束，保存模型到{}".format(self.model_path))
             else:
             '''
-            print("测试模式")
+            print("检测车辆")
             # 如果是测试，载入参数
             saver.restore(sess, self.model_path)
             print("从{}载入模型".format(self.model_path))
