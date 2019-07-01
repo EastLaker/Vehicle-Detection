@@ -9,10 +9,7 @@ import glob
 
 class vehicledect:
     # 数据文件夹
-    data_dir="./test"
-
-    # 训练还是测试True False
-    train = False
+    data_dir = "./test"
     # 模型文件路径
     model_path = "model/image_model"
 
@@ -21,7 +18,6 @@ class vehicledect:
         self.model_path = "model/image_model"
 
     # 修改图片尺寸
-
     def convertjpg(self, jpgfile, outdir, width=32, height=32):
         img = Image.open(jpgfile)
         img = img.convert('RGB')
@@ -125,7 +121,6 @@ class vehicledect:
             # 定义输入和Label以填充容器，测试时dropout为0
             test_feed_dict = {
                 datas_placeholder: datas,
-                # labels_placeholder: labels,
                 dropout_placeholdr: 0
             }
             predicted_labels_val = sess.run(predicted_labels, feed_dict=test_feed_dict)

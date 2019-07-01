@@ -13,7 +13,7 @@ char_w, char_h = 20, 20
 
 class Vehicle_License_Plate(object):
     "车牌识别"
-    def __init__(self,picture):
+    def __init__(self, picture):
         self.vehicle_license_plate = self.vehicle_license_plate_recognition(picture)
 
     def hist_image(self,img):
@@ -478,9 +478,9 @@ class Vehicle_License_Plate(object):
                     text_list.append(char_table[i])
                 return text_list
 
-    def vehicle_license_plate_recognition(self,picture):
-        plate_model_path = "model/plate_recongnize/model.ckpt-520.meta"
-        char_model_path = "model/char_recongnize/model.ckpt-720.meta"
+    def vehicle_license_plate_recognition(self, picture):
+        plate_model_path = "license_plate_recognition/model/plate_recongnize/model.ckpt-520.meta"
+        char_model_path = "license_plate_recognition/model/char_recongnize/model.ckpt-720.meta"
         img = cv2.imread(picture)
 
         # 预处理
@@ -512,6 +512,6 @@ class Vehicle_License_Plate(object):
                 vehicle_plate2.append(text[i])
 
         vehicle_plate = "".join(vehicle_plate1) + " " + "".join(vehicle_plate2)
-        print(vehicle_plate)
+        # print(vehicle_plate)
         return vehicle_plate
 

@@ -11,6 +11,7 @@ import urllib.parse
 import urllib.request
 import json
 from flask_cors import CORS
+from vehicle_license_plate import Vehicle_License_Plate
 
 
 app = Flask(__name__)   # 路由匹配
@@ -78,7 +79,7 @@ def api_upload():
         if content:
             res = json.loads(content, encoding='UTF8')
             print(res["result"][0])
-        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0],'车的种类:':carModel}, ensure_ascii=False)
+        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0], '车的种类:': carModel}, ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
@@ -98,8 +99,9 @@ def api_license():
         new_filename = 'license.' + ext
         f.save(os.path.join(file_dir, new_filename))
         # TODO识别车牌
-
-        return json.dumps({"success": 0, "msg": "upload success", "车牌号:": "?"}, ensure_ascii=False)
+        licensedetector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
+        # print(licensedetector.vehicle_license_plate)
+        return json.dumps({"success": 0, "msg": "upload success", "车牌号:": licensedetector.vehicle_license_plate}, ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
