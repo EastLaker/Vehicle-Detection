@@ -13,12 +13,13 @@ import json
 from flask_cors import CORS
 
 
-app = Flask(__name__)   #路由匹配
+app = Flask(__name__)   # 路由匹配
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF'])
 CORS(app, resources=r'/*')
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -28,9 +29,11 @@ def allowed_file(filename):
 def upload_test():
     return render_template('up.html')
 
+
 @app.route('/Login')
 def login():
     render_template('index.html')
+
 
 @app.route('/userlogin',methods=['POST','GET'])
 def userLogin():
@@ -38,6 +41,7 @@ def userLogin():
     upsd = request.form.get("upsd")
     print(uname, upsd)
     return render_template('index.html')
+
 
 # 上传文件
 @app.route('/up_photo', methods=['POST','GET'], strict_slashes=False)
@@ -76,7 +80,28 @@ def api_upload():
             print(res["result"][0])
         return json.dumps({"success": 0, "msg": "upload success", 'car info': res["result"][0],'车的种类:':carModel}, ensure_ascii=False)
     else:
-        return json.dumps({"success": 0, "msg": "upload fail"}, ensure_ascii=False)
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+
+
+# 车牌识别
+@app.route('/up_license', methods=['POST', 'GET'], strict_slashes=False)
+def api_license():
+    file_dir = os.path.join(basedir, app.config['UPLOAD_FOLDER'])
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    f = request.files['photo']
+    if f and allowed_file(f.filename):
+        fname = secure_filename(f.filename)
+        print(fname)
+        ext = fname.rsplit('.', 1)[1]
+        # new_filename = Pic_str().create_uuid() + '.' + ext
+        new_filename = 'license.' + ext
+        f.save(os.path.join(file_dir, new_filename))
+        # TODO识别车牌
+
+        return json.dumps({"success": 0, "msg": "upload success", "车牌号:": "?"}, ensure_ascii=False)
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
 @app.route('/download/<string:filename>', methods=['GET'])
@@ -105,8 +130,8 @@ def show_photo(filename):
 
 @app.route('/')
 def index():
-    #user_agent = request.headers.get('User-Agent')
-    #print(user_agent)
+    # user_agent = request.headers.get('User-Agent')
+    # print(user_agent)
     return render_template('index.html')
 
 

@@ -29,7 +29,8 @@ class vehicledect:
         new_img = img.resize((width, height), Image.BILINEAR)
         new_img.save(os.path.join(outdir, os.path.basename(jpgfile)))
 
-
+    # 从文件夹读取图片和标签到numpy数组中
+    # 标签信息在文件名中，例如1_40.jpg表示该图片的标签为1
     def read_data(self, data_Dir):
         datas = []
         # labels = []
@@ -39,27 +40,19 @@ class vehicledect:
             fpaths.append(fpath)
             image = Image.open(fpath)
             data = np.array(image) / 255.0
-            # label = int(fname.split("_")[0])
             datas.append(data)
-            # labels.append(label)
         datas = np.array(datas)
-        # labels = np.array(labels)
-        #    print("shape of datas: {}\tshape of labels: {}".format(datas.shape))
-        return fpaths, datas  # , labels
+        return fpaths, datas
 
     def train(self):
-        # 训练集
+        # 将static里的图片压缩至32x32
         for jpgfile in glob.glob("./static/*.jpg"):
             self.convertjpg(jpgfile, "./test")
-        print("train totally resize ! ! !")
 
-        # 从文件夹读取图片和标签到numpy数组中
-        # 标签信息在文件名中，例如1_40.jpg表示该图片的标签为1
-
-        fpaths, datas = self.read_data(self.data_dir)  # , labels
+        fpaths, datas = self.read_data(self.data_dir)
 
         # 计算有多少类图片
-        num_classes = 10  # len(set(labels))
+        num_classes = 10
 
         # 定义Placeholder，存放输入和标签
         datas_placeholder = tf.placeholder(tf.float32, [None, 32, 32, 3])
@@ -112,26 +105,6 @@ class vehicledect:
         saver = tf.train.Saver()
 
         with tf.Session() as sess:
-            '''
-                        if self.train:
-                print("训练模式")
-                # 如果是训练，初始化参数
-                sess.run(tf.global_variables_initializer())
-                # 定义输入和Label以填充容器，训练时dropout为0.25
-                train_feed_dict = {
-                    datas_placeholder: datas,
-                    # labels_placeholder: labels,
-                    dropout_placeholdr: 0.25
-                }
-                for step in range(150):
-                    _, mean_loss_val = sess.run([optimizer, mean_loss], feed_dict=train_feed_dict)
-
-                    if step % 10 == 0:
-                        print("step = {}\tmean loss = {}".format(step, mean_loss_val))
-                saver.save(sess, self.model_path)
-                print("训练结束，保存模型到{}".format(self.model_path))
-            else:
-            '''
             print("检测车辆")
             # 如果是测试，载入参数
             saver.restore(sess, self.model_path)
