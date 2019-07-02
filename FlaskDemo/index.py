@@ -18,7 +18,7 @@ app = Flask(__name__)   # 路由匹配
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF', 'JPEG'])
 CORS(app, resources=r'/*')
 
 
@@ -56,7 +56,8 @@ def api_upload():
         print(fname)
         ext = fname.rsplit('.', 1)[1]
         # new_filename = Pic_str().create_uuid() + '.' + ext
-        new_filename = 'test.' + ext
+        # new_filename = 'test.' + ext
+        new_filename = 'test.jpg'
         f.save(os.path.join(file_dir, new_filename))
         # 本地模型的分类
         detector = vehicledect()

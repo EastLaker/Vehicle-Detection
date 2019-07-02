@@ -492,7 +492,8 @@ class Vehicle_License_Plate(object):
         # CNN车牌过滤
         ret, car_plate = self.cnn_select_carPlate(car_plate_list, plate_model_path)
         if ret == False:
-            print("未检测到车牌")
+            # print("未检测到车牌")
+            return "未检测到车牌"
             sys.exit(-1)
         # cv2.imshow('cnn_plate',car_plate)
 

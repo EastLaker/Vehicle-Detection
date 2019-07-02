@@ -32,11 +32,12 @@ class vehicledect:
         # labels = []
         fpaths = []
         for fname in os.listdir(data_Dir):
-            fpath = os.path.join(data_Dir, fname)
-            fpaths.append(fpath)
-            image = Image.open(fpath)
-            data = np.array(image) / 255.0
-            datas.append(data)
+            if(fname == 'test.jpg'):
+                fpath = os.path.join(data_Dir, fname)
+                fpaths.append(fpath)
+                image = Image.open(fpath)
+                data = np.array(image) / 255.0
+                datas.append(data)
         datas = np.array(datas)
         return fpaths, datas
 
@@ -48,7 +49,7 @@ class vehicledect:
         fpaths, datas = self.read_data(self.data_dir)
 
         # 计算有多少类图片
-        num_classes = 10
+        num_classes = 5
 
         # 定义Placeholder，存放输入和标签
         datas_placeholder = tf.placeholder(tf.float32, [None, 32, 32, 3])
@@ -107,16 +108,11 @@ class vehicledect:
             print("从{}载入模型".format(self.model_path))
             # label和名称的对照关系
             label_name_dict = {
-                0: "巴士",
-                1: "出租车",
-                2: "货车",
-                3: "家用轿车",
-                4: "面包车",
-                5: "吉普车",
-                6: "运动型多功能车",
-                7: "重型货车",
-                8: "赛车",
-                9: "消防车"
+                0: "小汽车",
+                1: "巴士",
+                2: "卡车",
+                3: "摩托车",
+                4: "三轮车",
             }
             # 定义输入和Label以填充容器，测试时dropout为0
             test_feed_dict = {
