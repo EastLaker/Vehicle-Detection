@@ -102,7 +102,7 @@ def api_license():
         # TODO识别车牌
         licensedetector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
         # print(licensedetector.vehicle_license_plate)
-        return json.dumps({"success": 0, "msg": "upload success", "车牌号:": licensedetector.vehicle_license_plate}, ensure_ascii=False)
+        return json.dumps({"success": 0, "msg": "upload success", "car_license:": licensedetector.vehicle_license_plate}, ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 

@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="03c05ca0-1da1-4f4e-b36a-f38b6754db03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlaskDemo/model/image_model.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/model/image_model.data-00000-of-00001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlaskDemo/model/image_model.index" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/model/image_model.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlaskDemo/model/image_model.meta" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/model/image_model.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskDemo/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/index.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskDemo/static/test.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/static/test.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlaskDemo/test/test.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/test/test.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TensorFlow/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/TensorFlow/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,13 +52,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="5" />
-          <entry key="py" value="727" />
+          <entry key="py" value="830" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="Python" value="727" />
+          <entry key="Python" value="830" />
         </counts>
       </usages-collector>
     </session>
@@ -71,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FlaskDemo/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="13" column="55" lean-forward="true" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+            <state relative-caret-position="416">
+              <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
               <folding>
                 <element signature="e#40#82#0" expanded="true" />
               </folding>
@@ -101,7 +98,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlaskDemo/useModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1840">
+            <state relative-caret-position="252">
               <caret line="121" column="87" selection-start-line="121" selection-start-column="87" selection-end-line="121" selection-end-column="87" />
               <folding>
                 <element signature="e#15#24#0" expanded="true" />
@@ -152,9 +149,9 @@
         <option value="$PROJECT_DIR$/FlaskDemo/license_plate_recognition/vehicle_license_plate.py" />
         <option value="$PROJECT_DIR$/FlaskDemo/vehicle_license_plate.py" />
         <option value="$PROJECT_DIR$/FlaskDemo/templates/index.html" />
-        <option value="$PROJECT_DIR$/FlaskDemo/index.py" />
-        <option value="$PROJECT_DIR$/FlaskDemo/useModel.py" />
         <option value="$PROJECT_DIR$/TensorFlow/test.py" />
+        <option value="$PROJECT_DIR$/FlaskDemo/useModel.py" />
+        <option value="$PROJECT_DIR$/FlaskDemo/index.py" />
       </list>
     </option>
   </component>
@@ -165,9 +162,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-5" />
-    <option name="width" value="1565" />
-    <option name="height" value="875" />
+    <option name="x" value="951" />
+    <option name="width" value="975" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -186,12 +183,6 @@
               <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
               <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
               <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
-              <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
@@ -409,7 +400,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2671141" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.5261745" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -492,23 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TensorFlow/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/useModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="121" column="87" selection-start-line="121" selection-start-column="87" selection-end-line="121" selection-end-column="87" />
-          <folding>
-            <element signature="e#15#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/static/test.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -525,10 +499,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TensorFlow/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/useModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="121" column="87" selection-start-line="121" selection-start-column="87" selection-end-line="121" selection-end-column="87" />
+          <folding>
+            <element signature="e#15#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="55" lean-forward="true" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        <state relative-caret-position="416">
+          <caret line="104" column="70" selection-start-line="104" selection-start-column="70" selection-end-line="104" selection-end-column="70" />
           <folding>
             <element signature="e#40#82#0" expanded="true" />
           </folding>
