@@ -14,6 +14,7 @@ import json
 from flask_cors import CORS
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
+from login import Sign
 
 
 app = Flask(__name__)   # 路由匹配
@@ -158,6 +159,30 @@ def show_photo(filename):
     else:
         pass
 
+#注册
+@app.route('/sign_up', methods=['POST', 'GET'])
+def api_sign_up():
+    if request.method == 'POST':
+        requestJsonString = request.form.to_dict()
+        requestDict = eval(requestJsonString.keys([0]))
+        username = requestDict.get('username')
+        pwd = requestDict.get('password')
+        confirmpwd = requestDict.get('confirm-password')
+        sign = Sign()
+        result = sign.register(username,pwd,confirmpwd)
+        return json.dumps({"提示": result}, ensure_ascii=False)
+
+#登录
+@app.route('/sign_in', methods=['POST', 'GET'])
+def api_sign_in():
+    if request.method == 'POST':
+        requestJsonString = request.form.to_dict()
+        requestDict = eval(requestJsonString.keys([0]))
+        username = requestDict.get('username')
+        pwd = requestDict.get('password')
+        sign = Sign()
+        result = sign.login(username, pwd)
+        return json.dumps({"提示": result}, ensure_ascii=False)
 
 @app.route('/')
 def index():
