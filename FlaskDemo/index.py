@@ -5,13 +5,14 @@ from flask import Flask, render_template, jsonify, request, make_response, send_
 import time
 import os
 #from strUtil import Pic_str
-from useModel import vehicledect
+from vehicleClassify import vehicleClassify
 import base64
 import urllib.parse
 import urllib.request
 import json
 from flask_cors import CORS
 from vehicle_license_plate import Vehicle_License_Plate
+from VehicleDC import Car_DC
 
 
 app = Flask(__name__)   # 路由匹配
@@ -47,7 +48,7 @@ def userLogin():
 # 上传文件
 @app.route('/up_photo', methods=['POST','GET'], strict_slashes=False)
 def api_upload():
-    file_dir = os.path.join(basedir, app.config['UPLOAD_FOLDER'])
+    file_dir = os.path.join(basedir, 'static/vehicle')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     f = request.files['photo']
@@ -60,8 +61,8 @@ def api_upload():
         new_filename = 'test.jpg'
         f.save(os.path.join(file_dir, new_filename))
         # 本地模型的分类
-        detector = vehicledect()
-        carModel = detector.train()
+        detector = vehicleClassify()
+        carModel = detector.detect()
         # 向百度发送请求
         request_url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car"
         # 二进制方式打开图片文件
@@ -88,7 +89,7 @@ def api_upload():
 # 车牌识别
 @app.route('/up_license', methods=['POST', 'GET'], strict_slashes=False)
 def api_license():
-    file_dir = os.path.join(basedir, app.config['UPLOAD_FOLDER'])
+    file_dir = os.path.join(basedir, 'license_plate_recognition')  # 图像存储路径为license_plate_recognition文件夹中
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     f = request.files['photo']
@@ -99,10 +100,31 @@ def api_license():
         # new_filename = Pic_str().create_uuid() + '.' + ext
         new_filename = 'license.' + ext
         f.save(os.path.join(file_dir, new_filename))
-        # TODO识别车牌
+        # TODO 识别车牌
         licensedetector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
         # print(licensedetector.vehicle_license_plate)
         return json.dumps({"success": 0, "msg": "upload success", "car_license:": licensedetector.vehicle_license_plate}, ensure_ascii=False)
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+
+
+@app.route('/up_vehicle', methods=['POST', 'GET'], strict_slashes=False)
+def api_vehicle():
+    file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    f = request.files['photo']
+    if f and allowed_file(f.filename):
+        fname = secure_filename(f.filename)
+        print(fname)
+        ext = fname.rsplit('.', 1)[1]
+        # new_filename = Pic_str().create_uuid() + '.' + ext
+        new_filename = 'test.jpg'
+        f.save(os.path.join(file_dir, new_filename))
+        # TODO 检测图中的车辆
+        DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
+        DR_model.detect_classify()
+        return json.dumps({"success": 0, "msg": "upload success"}, ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
