@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="03c05ca0-1da1-4f4e-b36a-f38b6754db03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskDemo/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskDemo/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskDemo/static/test.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskDemo/upload/2019062520540978.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskDemo/upload/2019062614533131.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,18 +18,18 @@
     <SUITE FILE_PATH="coverage/Vehicle_Detection$useModel__1_.coverage" NAME="useModel (1) Coverage Results" MODIFIED="1561719709059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskDemo" />
     <SUITE FILE_PATH="coverage/Vehicle_Detection$useModel.coverage" NAME="useModel Coverage Results" MODIFIED="1561694538858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/TensorFlow" />
     <SUITE FILE_PATH="coverage/Vehicle_Detection$test.coverage" NAME="test Coverage Results" MODIFIED="1561597760862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/TensorFlow" />
-    <SUITE FILE_PATH="coverage/Vehicle_Detection$index.coverage" NAME="index Coverage Results" MODIFIED="1561720340460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskDemo" />
+    <SUITE FILE_PATH="coverage/Vehicle_Detection$index.coverage" NAME="index Coverage Results" MODIFIED="1562240049313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FlaskDemo" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="1834935965">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="8" />
-          <entry key="project.open.time.0" value="4" />
+          <entry key="project.open.time.0" value="5" />
           <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -33,7 +37,7 @@
           <entry key="JPEG" value="2" />
           <entry key="checkpoint" value="1" />
           <entry key="html" value="4" />
-          <entry key="jpg" value="53" />
+          <entry key="jpg" value="71" />
           <entry key="png" value="1" />
           <entry key="py" value="14" />
           <entry key="test" value="1" />
@@ -42,7 +46,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="4" />
-          <entry key="Image" value="56" />
+          <entry key="Image" value="74" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="14" />
         </counts>
@@ -51,14 +55,15 @@
         <counts>
           <entry key="dummy" value="25" />
           <entry key="html" value="62" />
-          <entry key="py" value="1027" />
+          <entry key="py" value="1238" />
+          <entry key="txt" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="62" />
-          <entry key="PLAIN_TEXT" value="25" />
-          <entry key="Python" value="1027" />
+          <entry key="PLAIN_TEXT" value="39" />
+          <entry key="Python" value="1238" />
         </counts>
       </usages-collector>
     </session>
@@ -68,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FlaskDemo/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="121" column="32" selection-start-line="121" selection-start-column="32" selection-end-line="121" selection-end-column="32" />
+            <state relative-caret-position="93">
+              <caret line="131" column="58" lean-forward="true" selection-start-line="131" selection-start-column="58" selection-end-line="131" selection-end-column="58" />
               <folding>
                 <element signature="e#40#82#0" expanded="true" />
               </folding>
@@ -78,15 +83,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FlaskDemo/static/vehicle/test.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlaskDemo/VehicleDC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="390" column="30" selection-start-line="389" selection-start-column="4" selection-end-line="390" selection-end-column="30" />
+            <state relative-caret-position="168">
+              <caret line="365" column="32" selection-start-line="365" selection-start-column="32" selection-end-line="365" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -101,19 +101,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TensorFlow/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleClassify.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-414">
-              <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+            <state relative-caret-position="18">
+              <caret line="25" column="67" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="67" />
               <folding>
                 <element signature="e#15#24#0" expanded="true" />
               </folding>
@@ -144,6 +135,7 @@
         <option value="$PROJECT_DIR$/FlaskDemo/useModel.py" />
         <option value="$PROJECT_DIR$/FlaskDemo/vehicleClassify.py" />
         <option value="$PROJECT_DIR$/FlaskDemo/templates/index.html" />
+        <option value="$PROJECT_DIR$/FlaskDemo/VehicleDC.py" />
         <option value="$PROJECT_DIR$/FlaskDemo/index.py" />
       </list>
     </option>
@@ -155,9 +147,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-5" />
-    <option name="width" value="1035" />
-    <option name="height" value="1090" />
+    <option name="x" value="582" />
+    <option name="width" value="828" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -176,6 +168,24 @@
               <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
               <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
               <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
+              <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
+              <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vehicle-Detection" type="462c0819:PsiDirectoryNode" />
+              <item name="FlaskDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="vehicleResults" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Vehicle-Detection" type="b2602c69:ProjectViewProjectNode" />
@@ -353,6 +363,14 @@
       <option name="presentableId" value="Default" />
       <updated>1561543881358</updated>
     </task>
+    <task id="LOCAL-00001" summary="add car detect">
+      <created>1562232500433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1562232500433</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -365,9 +383,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1487" height="878" extended-state="7" />
+    <frame x="-7" y="-7" width="1487" height="878" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24352694" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22043388" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -378,10 +396,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.24832214" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.24563758" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3181208" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28590605" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32214764" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -422,6 +440,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add car detect" />
+    <option name="LAST_COMMIT_MESSAGE" value="add car detect" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -474,9 +496,6 @@
     <entry file="file://$PROJECT_DIR$/FlaskDemo/static/test.JPEG" />
     <entry file="file://$PROJECT_DIR$/FlaskDemo/static/license.png" />
     <entry file="file://$PROJECT_DIR$/FlaskDemo/static/license.jpg" />
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/upload/2019062614533131.jpg" />
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/upload/2019062520540978.jpg" />
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/test.jpg" />
     <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicle_license_plate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -488,9 +507,47 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/license_photo/license.jpg" />
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/test/test.jpg" />
     <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicle/test.jpg" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/checkpoints/test">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/vehicle/test.JPEG" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front suv0.jpg" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front saloonCar1.jpg" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgGreen Front saloonCar2.jpg" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front saloonCar0.jpg" />
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/upload/2019062520540978.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/upload/2019062614533131.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgWhite Rear saloonCar0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/vehicle/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/shrinkPic/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/test/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgYellow Rear saloonCar0.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/TensorFlow/test.py">
@@ -500,16 +557,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/checkpoints/test">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/test.jpg">
+    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgYellow Front saloonCar1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleClassify.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
-          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+        <state relative-caret-position="18">
+          <caret line="25" column="67" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="67" />
           <folding>
             <element signature="e#15#24#0" expanded="true" />
           </folding>
@@ -518,43 +572,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/VehicleDC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="390" column="30" selection-start-line="389" selection-start-column="4" selection-end-line="390" selection-end-column="30" />
+        <state relative-caret-position="168">
+          <caret line="365" column="32" selection-start-line="365" selection-start-column="32" selection-end-line="365" selection-end-column="32" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/vehicle/test.JPEG">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/static/vehicle/test.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front suv0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front saloonCar1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgGreen Front saloonCar2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpgBlue Front saloonCar0.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/vehicleResults/test.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/FlaskDemo/index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="121" column="32" selection-start-line="121" selection-start-column="32" selection-end-line="121" selection-end-column="32" />
+        <state relative-caret-position="93">
+          <caret line="131" column="58" lean-forward="true" selection-start-line="131" selection-start-column="58" selection-end-line="131" selection-end-column="58" />
           <folding>
             <element signature="e#40#82#0" expanded="true" />
           </folding>

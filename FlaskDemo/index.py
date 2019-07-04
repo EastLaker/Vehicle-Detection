@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, jsonify, request, make_response, send_from_directory, abort, url_for, redirect
 import time
 import os
+import base64
 #from strUtil import Pic_str
 from vehicleClassify import vehicleClassify
 import base64
@@ -124,7 +125,12 @@ def api_vehicle():
         # TODO 检测图中的车辆
         DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
         DR_model.detect_classify()
-        return json.dumps({"success": 0, "msg": "upload success"}, ensure_ascii=False)
+        # 返回base64格式的图片
+        with open(os.curdir + '/vehicleResults/test.jpg', 'rb') as img_f:
+            img_stream = img_f.read()
+            response = make_response(img_stream)
+            response.headers['Content-Type'] = 'image/png'
+            return response
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
