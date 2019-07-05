@@ -11,7 +11,7 @@ import base64
 import urllib.parse
 import urllib.request
 import json
-from flask_cors import CORS
+from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
 from login import Sign
@@ -22,8 +22,8 @@ UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF', 'JPEG'])
-CORS(app, resources=r'/*')
-
+# CORS(app, resources=r'/*')
+CORS(app, supports_credentials=True)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -159,25 +159,25 @@ def show_photo(filename):
     else:
         pass
 
-#注册
+# 注册
 @app.route('/sign_up', methods=['POST', 'GET'])
 def api_sign_up():
     if request.method == 'POST':
-        requestJsonString = request.form.to_dict()
-        requestDict = eval(requestJsonString.keys([0]))
+        requestDict = request.form.to_dict()
+        # requestDict = eval(requestJsonString.keys([0]))
         username = requestDict.get('username')
         pwd = requestDict.get('password')
         confirmpwd = requestDict.get('confirm-password')
         sign = Sign()
-        result = sign.register(username,pwd,confirmpwd)
+        result = sign.register(username, pwd, confirmpwd)
         return json.dumps({"提示": result}, ensure_ascii=False)
 
-#登录
+# 登录
 @app.route('/sign_in', methods=['POST', 'GET'])
 def api_sign_in():
     if request.method == 'POST':
-        requestJsonString = request.form.to_dict()
-        requestDict = eval(requestJsonString.keys([0]))
+        requestDict = request.form.to_dict()
+        # requestDict = eval(requestJsonString.keys([0]))
         username = requestDict.get('username')
         pwd = requestDict.get('password')
         sign = Sign()

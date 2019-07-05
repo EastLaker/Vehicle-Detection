@@ -14,27 +14,26 @@ RE_ALNUM = re.compile(r'^[a-zA-Z]\w{1,20}$')
 密码支持字母、数字、下划线的 6 —— 18 个字符
 '''
 # 字母，数字，下划线
-RE_PASSWORD = re.compile(r'^[a-zA-Z]\w{6,18}$')
+RE_PASSWORD = re.compile(r'^\w{6,18}$')
 
 class Sign(object):
     "用户注册和登录"
     def __init__(self):
         # 连接数据库
         db = db_provider.DB()
-        if db.table_exists("user")==0:
-            # 使用预处理语句创建表
-            sql = """CREATE TABLE user (
-                             name  CHAR(20) NOT NULL,
-                             pwd  CHAR(100) NOT NULL,
-                             PRIMARY key(name))"""
-            db.db.cursor().execute(sql)
+        # 使用预处理语句创建表
+        sql = """CREATE TABLE IF NOT EXISTS user (
+                                     name  CHAR(20) NOT NULL,
+                                     pwd  CHAR(100) NOT NULL,
+                                     PRIMARY KEY(name)) """
+        db.db.cursor().execute(sql)
 
     # 注册
-    def register(self,username,pwd,confirmpwd):
+    def register(self, username, pwd, confirmpwd):
         # 连接数据库
         db = db_provider.DB()
-        #生成验证码图片
-        #newcaptcha = captcha_generation.gen_captcha_text_and_image()
+        # 生成验证码图片
+        # newcaptcha = captcha_generation.gen_captcha_text_and_image()
 
         if not RE_CHINESE.match(username) and not RE_ALNUM.match(username):
             return "输入的用户名（%s）不符合要求" % (username)
@@ -66,9 +65,9 @@ class Sign(object):
             return '注册失败，请重新注册！'
 
     # 登录
-    def login(self,username,pwd):
-        #生成验证码图片
-        #newcaptcha = captcha_generation.gen_captcha_text_and_image()
+    def login(self, username, pwd):
+        # 生成验证码图片
+        # newcaptcha = captcha_generation.gen_captcha_text_and_image()
 
         # 连接数据库
         db = db_provider.DB()

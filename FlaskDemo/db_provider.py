@@ -2,7 +2,7 @@ import pymysql
 import hashlib
 import re
 
-conn = 'localhost'
+conn = '101.132.226.19'
 user = 'vehicleidentity'
 pwd = '7rthFY8P3a5XWGT3'
 db_name = 'vehicleidentity'
@@ -13,7 +13,7 @@ db_name = 'vehicleidentity'
 '''
 class DB(object):
     def __init__(self):
-        self.db = pymysql.connect(conn,user,pwd,db_name)
+        self.db = pymysql.connect(conn, user, pwd, db_name)
 
     #查询一条数据
     def get_data_one(self,sql,args):
@@ -47,16 +47,16 @@ class DB(object):
         return count
 
     #增
-    def insert(self,sql,args):
-        return self.__edit(sql,args)
+    def insert(self, sql, args):
+        return self.__edit(sql, args)
 
     # 删
-    def delete(self, sql,args):
-        return self.__edit(sql,args)
+    def delete(self, sql, args):
+        return self.__edit(sql, args)
 
     # 改
-    def update(self, sql,args):
-         return self.__edit(sql,args)
+    def update(self, sql, args):
+         return self.__edit(sql, args)
 
     #密码加密
     def my_md5(self, pwd):
@@ -64,16 +64,6 @@ class DB(object):
         my_md5.update(pwd.encode('utf-8'))
         return my_md5.hexdigest()
 
-    #判断表（table_name）是否存在
-    def table_exists(self,table_name):
-        sql = "SHOW TABLES"
-        tables = [self.get_data_all(sql)]
-        table_list = re.findall('(\'.*?\')',str(tables))
-        table_list = [re.sub("'", '', each) for each in table_list]
-        if table_name in table_list:
-            return 1  # 存在返回1
-        else:
-            return 0  #不存在返回0
 
     def close(self):
         self.db.close()

@@ -264,17 +264,19 @@ class Car_DC():
             pt_1s.append(pt_1)
             pt_2s.append(pt_2)
 
-            # turn BGR back to RGB
-            ROI = Image.fromarray(
-                orig_img[pt_1[1]: pt_2[1],
-                         pt_1[0]: pt_2[0]][:, :, ::-1])
-            # ROI.show()
-
-            # call classifier to predict
-            car_color, car_direction, car_type = self.classifier.predict(ROI)
-            label = str(car_color + ' ' + car_direction + ' ' + car_type)
-            labels.append(label)
-            print('=> predicted label: ', label)
+            try:
+                # turn BGR back to RGB
+                ROI = Image.fromarray(
+                    orig_img[pt_1[1]: pt_2[1], pt_1[0]: pt_2[0]][:, :, ::-1])
+                # ROI.show()
+                # call classifier to predict
+                car_color, car_direction, car_type = self.classifier.predict(ROI)
+                label = str(car_color + ' ' + car_direction + ' ' + car_type)
+                labels.append(label)
+                print('=> predicted label: ', label)
+            except:
+                print('no detected area')
+                return
 
         # 2
         color = (0, 215, 255)   # 框的颜色
