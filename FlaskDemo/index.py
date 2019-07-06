@@ -151,6 +151,8 @@ def api_driver():
         # TODO 识别驾驶员
         facedetector = Face_Detection.faceDetection()
         return json.dumps(facedetector, ensure_ascii=False)
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
