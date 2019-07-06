@@ -11,6 +11,7 @@ import base64
 import urllib.parse
 import urllib.request
 import json
+import cv2
 from faceDetection import Face_Detection
 from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
@@ -149,8 +150,12 @@ def api_driver():
         new_filename = 'faceimg.jpg'
         f.save(os.path.join(file_dir, new_filename))
         # TODO 识别驾驶员
-        facedetector = Face_Detection.faceDetection()
-        return json.dumps(facedetector, ensure_ascii=False)
+        Face_Detection.faceDetection()
+        with open(os.curdir + '/imgfaced/faceimgd.jpg', 'rb') as img_f:
+            img_stream = img_f.read()
+            response = make_response(img_stream)
+            response.headers['Content-Type'] = 'image/png'
+            return response
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
