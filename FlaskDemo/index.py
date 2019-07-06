@@ -137,6 +137,33 @@ def api_vehicle():
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
+
+@app.route('/up_vodeo', methods=['POST', 'GET'], strict_slashes=False)
+def api_video():
+    file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    f = request.files['photo']
+    if f:
+        fname = secure_filename(f.filename)
+        print(fname)
+        ext = fname.rsplit('.', 1)[1]
+        # new_filename = Pic_str().create_uuid() + '.' + ext
+        new_filename = 'test.' + ext
+        f.save(os.path.join(file_dir, new_filename))
+        # TODO 检测图中的车辆
+        DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
+        DR_model.detect_classify_video(os.path.join(file_dir, new_filename), './vehicleResults/res.mp4')
+        # 返回base64格式的图片
+        with open(os.curdir + '/vehicleResults/res.mp4', 'rb') as img_f:
+            img_stream = img_f.read()
+            response = make_response(img_stream)
+            response.headers['Content-Type'] = 'video/mp4'
+            return response
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+
+
 # 驾驶员识别
 @app.route('/up_driver', methods=['POST', 'GET'], strict_slashes=False)
 def api_driver():

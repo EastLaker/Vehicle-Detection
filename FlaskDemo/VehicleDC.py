@@ -32,7 +32,7 @@ from tqdm import tqdm
 from pylab import *
 mpl.rcParams['font.sans-serif'] = ['SimHei']
 
-use_cuda = False  # True
+use_cuda = False  # True to use cdua, false to use CPU
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
@@ -247,7 +247,7 @@ class Car_DC():
         self.imgs_path = [os.path.join(src_dir, x) for x in os.listdir(
             src_dir) if x.endswith('.jpg')]
 
-    def cls_draw_bbox(self, output, orig_img, imgobj, img_path):
+    def cls_draw_bbox_write(self, output, orig_img, imgobj, img_path):
         """
         1. predict vehicle's attributes based on bbox of vehicle
         2. draw bbox to orig_img
@@ -290,6 +290,58 @@ class Car_DC():
             dst_path = self.dst_dir + '/' + os.path.split(img_path)[1] + labels[i] + str(i) + '.jpg'
             if not os.path.exists(dst_path):
                 cv2.imwrite(dst_path, img_temp)
+
+            # get str text size
+            txt_size = cv2.getTextSize(
+                label, cv2.FONT_HERSHEY_PLAIN, 2, 2)[0]
+            # pt_2 = pt_1[0] + txt_size[0] + 3, pt_1[1] + txt_size[1] + 5
+            pt_2 = pt_1[0] + txt_size[0] + 3, pt_1[1] - txt_size[1] - 5
+
+            # draw text background rect
+            cv2.rectangle(orig_img, pt_1, pt_2, color, thickness=-1)  # text
+
+            # draw text
+            cv2.putText(orig_img, labels[i], (pt_1[0], pt_1[1]),  # pt_1[1] + txt_size[1] + 4
+                        cv2.FONT_HERSHEY_PLAIN, 2, [225, 255, 255], 2)
+
+    def cls_draw_bbox(self, output, orig_img):
+        """
+        1. predict vehicle's attributes based on bbox of vehicle
+        2. draw bbox to orig_img
+        """
+        labels = []
+        pt_1s = []
+        pt_2s = []
+
+        # 1
+        for det in output:
+            # rectangle points
+            pt_1 = tuple(det[1:3].int())  # the left-up point
+            pt_2 = tuple(det[3:5].int())  # the right down point
+            pt_1s.append(pt_1)
+            pt_2s.append(pt_2)
+
+            try:
+                # turn BGR back to RGB
+                ROI = Image.fromarray(
+                    orig_img[pt_1[1]: pt_2[1], pt_1[0]: pt_2[0]][:, :, ::-1])
+                # ROI.show()
+                # call classifier to predict
+                car_color, car_direction, car_type = self.classifier.predict(ROI)
+                label = str(car_color + ' ' + car_direction + ' ' + car_type)
+                labels.append(label)
+                print('=> predicted label: ', label)
+            except:
+                print('no detected area')
+                return
+        # 2
+        color = (0, 215, 255)
+        for i, det in enumerate(output):
+            pt_1 = pt_1s[i]
+            pt_2 = pt_2s[i]
+
+            # draw bounding box
+            cv2.rectangle(orig_img, pt_1, pt_2, color, thickness=2)
 
             # get str text size
             txt_size = cv2.getTextSize(
@@ -362,7 +414,7 @@ class Car_DC():
             orig_img = cv2.cvtColor(np.asarray(
                 img), cv2.COLOR_RGB2BGR)  # RGB => BGR
             if type(output) != int:
-                self.cls_draw_bbox(output, orig_img, imgobj, x)
+                self.cls_draw_bbox_write(output, orig_img, imgobj, x)
                 dst_path = self.dst_dir + '/' + os.path.split(x)[1]
                 if not os.path.exists(dst_path):
                     cv2.imwrite(dst_path, orig_img)
