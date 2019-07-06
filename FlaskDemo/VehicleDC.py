@@ -367,6 +367,54 @@ class Car_DC():
                 if not os.path.exists(dst_path):
                     cv2.imwrite(dst_path, orig_img)
 
+    def detect_classify_video(self, video_path, res_path):
+        """
+        detect in video frames
+        """
+        # myvideo = cv2.VideoCapture(video_path)
+        # retval = cv2.VideoCapture.grab()
+        # 获得视频的格式
+        videoCapture = cv2.VideoCapture(video_path)
+
+
+        # 获得码率及尺寸
+        fps = videoCapture.get(cv2.CAP_PROP_FPS)
+        size = (int(videoCapture.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                int(videoCapture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+
+        # 指定写视频的格式, I420-avi, MJPG-mp4
+        videoWriter = cv2.VideoWriter(res_path, cv2.VideoWriter_fourcc('X', 'V', 'I', 'D'), fps, size)
+
+        # 读帧
+        success, frame = videoCapture.read()
+
+        while success:
+            # cv2.imshow("Oto Video", frame) #显示
+            cv2.waitKey(int(1000 / int(fps)))  # 延迟
+            # 检测图片
+            img = cv2.cvtColor(np.asarray(frame), cv2.COLOR_RGB2BGR)
+            img2det = process_img(img, self.inp_dim)
+            img2det = img2det.to(device)  # put image data to device
+
+            # vehicle detection
+            prediction = self.detector.forward(img2det, CUDA=use_cuda)
+
+            # calculating scaling factor
+            orig_img_size = list(size)
+            output = self.process_predict(prediction,
+                                          self.prob_th,
+                                          self.num_classes,
+                                          self.nms_th,
+                                          self.inp_dim,
+                                          orig_img_size)
+
+            orig_img = cv2.cvtColor(np.asarray(
+                img), cv2.COLOR_RGB2BGR)  # RGB => BGR
+            if type(output) != int:
+                self.cls_draw_bbox(output, orig_img)
+                videoWriter.write(orig_img) # 写视频帧
+
+            success, frame = videoCapture.read()  # 获取下一帧
 # -----------------------------------------------------------
 
 
@@ -378,19 +426,15 @@ parser.add_argument('-src-dir',
 parser.add_argument('-dst-dir',
                     type=str,
                     default='./test_result',
+
                     help='destination directory of images to store results.')
 """
-
-"""
 if __name__ == '__main__':
-    # ---------------------------- Car detect and classify
-    # DR_model = Car_DC(src_dir='./test_imgs',
-    #                   dst_dir='./test_result')
-    # DR_model.detect_classify()
-
     # args = parser.parse_args()
     DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
     DR_model.detect_classify()
+"""
+
 
 
 '''
