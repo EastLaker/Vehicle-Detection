@@ -11,6 +11,7 @@ import base64
 import urllib.parse
 import urllib.request
 import json
+from faceDetection import Face_Detection
 from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
@@ -135,6 +136,21 @@ def api_vehicle():
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
+# 驾驶员识别
+@app.route('/up_driver', methods=['POST', 'GET'], strict_slashes=False)
+def api_driver():
+    file_dir = os.path.join(basedir, 'imgfaced')  # 图像存储路径为imgfaced文件夹中
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    f = request.files['photo']
+    if f and allowed_file(f.filename):
+        fname = secure_filename(f.filename)
+        print(fname)
+        new_filename = 'faceimg.jpg'
+        f.save(os.path.join(file_dir, new_filename))
+        # TODO 识别驾驶员
+        facedetector = Face_Detection.faceDetection()
+        return json.dumps(facedetector, ensure_ascii=False)
 
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
