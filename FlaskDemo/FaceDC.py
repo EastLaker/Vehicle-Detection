@@ -264,13 +264,13 @@ class Face_DC():
                 return
 
         # 2
-        color = (0, 215, 255)   # 框的颜色
+        color = (199, 63, 63)   # 框的颜色
         for i, det in enumerate(output):
             pt_1 = pt_1s[i]
             pt_2 = pt_2s[i]
 
             # draw bounding box
-            cv2.rectangle(orig_img, pt_1, pt_2, color, thickness=2)
+            cv2.rectangle(orig_img, pt_1, pt_2, color, thickness=1)
             img_temp = imgobj[pt_1[1]:pt_2[1], pt_1[0]:pt_2[0]]
             dst_path = self.dst_dir + '/' + os.path.split(img_path)[1] + labels[i] + str(i) + '.jpg'
             if not os.path.exists(dst_path):
@@ -287,7 +287,7 @@ class Face_DC():
 
             # draw text
             cv2.putText(orig_img, labels[i], (pt_1[0], pt_1[1]),  # pt_1[1] + txt_size[1] + 4
-                        cv2.FONT_HERSHEY_PLAIN, 2, [225, 255, 255], 2)
+                        cv2.FONT_HERSHEY_PLAIN, 2, [0, 0, 0], 2)
 
     def process_predict(self,
                         prediction,
