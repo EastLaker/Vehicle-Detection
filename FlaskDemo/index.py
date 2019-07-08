@@ -16,6 +16,7 @@ from faceDetection import Face_Detection
 from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
+from FaceDC import Face_DC
 from login import Sign
 
 
@@ -178,7 +179,9 @@ def api_driver():
         f.save(os.path.join(file_dir, new_filename))
         # TODO 识别驾驶员
         Face_Detection.faceDetection()
-        with open(os.curdir + '/imgfaced/faceimgd.jpg', 'rb') as img_f:
+        FR_model = Face_DC(src_dir="imgfaced/", dst_dir="faced/")
+        FR_model.detect_classify()
+        with open(os.curdir + '/faced/test.jpg', 'rb') as img_f:
             img_stream = img_f.read()
             response = make_response(img_stream)
             response.headers['Content-Type'] = 'image/png'

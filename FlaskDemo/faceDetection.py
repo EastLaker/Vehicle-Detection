@@ -35,7 +35,7 @@ class Face_Detection():
                 cv2.rectangle(img, (x, y - 10), (x + w, y + h + 10), color, 1)
                 cv2.rectangle(img, (x, y - 30), (x + 72, y - 10), color, thickness=-1)
                 cv2.putText(img, 'Driver', ((x, y - 12)), cv2.FONT_HERSHEY_PLAIN, 1.5, [12, 25, 0], 2)
-        else:
-            cv2.rectangle(img, (20, 20), (247, 60), color, thickness=-1)
-            cv2.putText(img, 'No Dviver', ((20, 57)), cv2.FONT_HERSHEY_PLAIN, 3, [12, 25, 0], 2)
-        cv2.imwrite('imgfaced/faceimgd.jpg', img)
+        #else:
+        #    cv2.rectangle(img, (20, 20), (247, 60), color, thickness=-1)
+        #    cv2.putText(img, 'No Driver', ((20, 57)), cv2.FONT_HERSHEY_PLAIN, 3, [12, 25, 0], 2)
+        cv2.imwrite('imgfaced/test.jpg', img)
