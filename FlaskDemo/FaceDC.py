@@ -34,7 +34,7 @@ local_car_cfg_path = './car.cfg'
 local_car_det_weights_path = './car_540000.weights'
 
 
-
+#
 class Cls_Net(torch.nn.Module):
     """
     vehicle multilabel classification model
