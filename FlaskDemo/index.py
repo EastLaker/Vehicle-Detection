@@ -18,6 +18,7 @@ from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
 from FaceDC import Face_DC
 from login import Sign
+import requests
 
 
 app = Flask(__name__)   # 路由匹配
@@ -223,6 +224,9 @@ def api_sign_up():
         confirmpwd = requestDict.get('confirm-password')
         sign = Sign()
         result = sign.register(username, pwd, confirmpwd)
+        if result == "注册成功！":
+            session = requests.Session()
+            return json.dumps({"提示": result}, {"session": session}, ensure_ascii=False)
         return json.dumps({"提示": result}, ensure_ascii=False)
 
 # 登录
@@ -235,6 +239,9 @@ def api_sign_in():
         pwd = requestDict.get('password')
         sign = Sign()
         result = sign.login(username, pwd)
+        if result == "登录成功！":
+            session = requests.Session()
+            return json.dumps({"提示": result}, {"session": session}, ensure_ascii=False)
         return json.dumps({"提示": result}, ensure_ascii=False)
 
 @app.route('/')
