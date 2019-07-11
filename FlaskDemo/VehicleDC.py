@@ -15,13 +15,13 @@ from dataset import color_attrs, direction_attrs, type_attrs
 
 import torch
 import torchvision
-#import paramiko
+# import paramiko
 import cv2
 import numpy as np
 import PIL
 from PIL import Image
-from scipy.spatial.distance import cityblock
-from tqdm import tqdm
+# from scipy.spatial.distance import cityblock
+# from tqdm import tqdm
 
 # -------------------------------------
 # for matplotlib to displacy chinese characters correctly

@@ -11,7 +11,7 @@ import base64
 import urllib.parse
 import urllib.request
 import json
-import cv2
+# import cv2
 from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC

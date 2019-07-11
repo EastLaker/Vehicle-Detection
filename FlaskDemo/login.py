@@ -1,20 +1,21 @@
 import db_provider
 import re
 import getpass
-#import captcha_generation
+# import captcha_generation
 
 '''
 用户名支持纯汉字和以字母开头的包含字母、数字、下划线的 1 —— 20 个字符
 '''
 # 汉字
 RE_CHINESE = re.compile(r'^[\u4e00-\u9fa5]{1,20}$')
-#字母开头，包含字母，数字，下划线
+# 字母开头，包含字母，数字，下划线
 RE_ALNUM = re.compile(r'^[a-zA-Z]\w{1,20}$')
 '''
 密码支持字母、数字、下划线的 6 —— 18 个字符
 '''
 # 字母，数字，下划线
 RE_PASSWORD = re.compile(r'^\w{6,18}$')
+
 
 class Sign(object):
     "用户注册和登录"
@@ -47,7 +48,6 @@ class Sign(object):
 
         if pwd != confirmpwd:
             return "两次输入密码不相同"
-
 
         '''判断验证码是否正确
         for i in range(4):
