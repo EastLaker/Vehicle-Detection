@@ -29,8 +29,9 @@ preds = model.predict(x)
 '''
 
 
-class car_model_detector:
-    def detect_model(self, pic_path):
+class CarModelDetector:
+    @staticmethod
+    def detect_model(pic_path):
         global graph
         with graph.as_default():
             img = image.load_img(pic_path, target_size=(img_height, img_width))

@@ -4,7 +4,6 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, jsonify, request, make_response, send_from_directory, abort, url_for, redirect
 import time
 import os
-CUDA_VISIBLE_DEVICES="-1"
 import base64
 # from strUtil import Pic_str
 # from vehicleClassify import vehicleClassify
@@ -17,7 +16,7 @@ from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
 from login import Sign
-from car_model import car_model_detector
+from car_model import CarModelDetector
 from MyEncoder import MyEncoder
 import tensorflow as tf
 
@@ -25,12 +24,13 @@ app = Flask(__name__)   # 路由匹配
 UPLOAD_FOLDER = 'static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'gif', 'GIF', 'JPEG'])
-# CORS(app, resources=r'/*')
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'JPEG'])
+# 允许跨域访问
 CORS(app, supports_credentials=True)
 global graph
 graph = tf.get_default_graph()
-model_detector = car_model_detector()
+# model_detector = car_model_detector()
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -69,11 +69,8 @@ def api_upload():
         # new_filename = 'test.' + ext
         new_filename = 'test.jpg'
         f.save(os.path.join(file_dir, new_filename))
-        # 本地模型的分类
-        # detector = vehicleClassify()
-        # car_class = detector.detect()
         # 本地模型识别车型
-        car_model = model_detector.detect_model(os.path.join(file_dir, new_filename))
+        car_model = CarModelDetector.detect_model(os.path.join(file_dir, new_filename))
         # 向百度发送请求
         request_url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/car"
         # 二进制方式打开图片文件
@@ -113,9 +110,9 @@ def api_license():
         new_filename = 'license.' + ext
         f.save(os.path.join(file_dir, new_filename))
         # TODO 识别车牌
-        licensedetector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
-        # print(licensedetector.vehicle_license_plate)
-        return json.dumps({"success": 0, "msg": "upload success", "car_license:": licensedetector.vehicle_license_plate}
+        license_detector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
+        # print(license_detector.vehicle_license_plate)
+        return json.dumps({"success": 0, "msg": "upload success", "car_license:": license_detector.vehicle_license_plate}
                           , ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
@@ -172,32 +169,6 @@ def api_video():
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
-'''
-# 驾驶员识别
-@app.route('/up_driver', methods=['POST', 'GET'], strict_slashes=False)
-def api_driver():
-    file_dir = os.path.join(basedir, 'imgfaced')  # 图像存储路径为imgfaced文件夹中
-    if not os.path.exists(file_dir):
-        os.makedirs(file_dir)
-    f = request.files['photo']
-    if f and allowed_file(f.filename):
-        fname = secure_filename(f.filename)
-        print(fname)
-        new_filename = 'faceimg.jpg'
-        f.save(os.path.join(file_dir, new_filename))
-        # TODO 识别驾驶员#
-        Face_Detection.faceDetection()
-        FR_model = Face_DC(src_dir="imgfaced/", dst_dir="faced/")
-        FR_model.detect_classify()
-        with open(os.curdir + '/faced/test.jpg', 'rb') as img_f:
-            img_stream = img_f.read()
-            response = make_response(img_stream)
-            response.headers['Content-Type'] = 'image/png'
-            return response
-    else:
-        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
-'''
-
 
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
@@ -222,6 +193,7 @@ def show_photo(filename):
     else:
         pass
 
+
 # 注册
 @app.route('/sign_up', methods=['POST', 'GET'])
 def api_sign_up():
@@ -240,6 +212,7 @@ def api_sign_up():
         '''
         return json.dumps({"提示": result}, ensure_ascii=False)
 
+
 # 登录
 @app.route('/sign_in', methods=['POST', 'GET'])
 def api_sign_in():
@@ -257,6 +230,7 @@ def api_sign_in():
         '''
         return json.dumps({"提示": result}, ensure_ascii=False)
 
+
 @app.route('/')
 def index():
     # user_agent = request.headers.get('User-Agent')
@@ -264,5 +238,5 @@ def index():
     return render_template('index.html')
 
 
-if __name__=='__main__':
-    app.run(debug=True,host='0.0.0.0')
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')

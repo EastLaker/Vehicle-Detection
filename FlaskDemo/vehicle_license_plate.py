@@ -11,12 +11,13 @@ char_table = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', '
 car_plate_w, car_plate_h = 136, 36
 char_w, char_h = 20, 20
 
+
 class Vehicle_License_Plate(object):
     "车牌识别"
     def __init__(self, picture):
         self.vehicle_license_plate = self.vehicle_license_plate_recognition(picture)
 
-    def hist_image(self,img):
+    def hist_image(self, img):
         assert img.ndim == 2
         hist = [0 for i in range(256)]
         img_h, img_w = img.shape[0], img.shape[1]
@@ -32,7 +33,7 @@ class Vehicle_License_Plate(object):
                 img[row, col] = p1[v] * 255
         return img
 
-    def find_board_area(self,img):
+    def find_board_area(self, img):
         assert img.ndim == 2
         img_h, img_w = img.shape[0], img.shape[1]
         top, bottom, left, right = 0, img_h, 0, img_w
@@ -60,7 +61,7 @@ class Vehicle_License_Plate(object):
                 break
         return left, top, 120, bottom - top - 10
 
-    def verify_scale(self,rotate_rect):
+    def verify_scale(self, rotate_rect):
         error = 0.4
         aspect = 4  # 4.7272
         min_area = 10 * (10 * aspect)

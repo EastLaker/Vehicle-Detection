@@ -1,5 +1,4 @@
 # coding: utf-8
-
 import os
 import sys
 import re
@@ -21,9 +20,6 @@ import cv2
 import numpy as np
 import PIL
 from PIL import Image
-from matplotlib import pyplot as plt
-from matplotlib.widgets import Cursor
-from matplotlib.image import AxesImage
 from scipy.spatial.distance import cityblock
 from tqdm import tqdm
 
@@ -101,7 +97,7 @@ class Cls_Net(torch.nn.Module):
 
 
 # ------------------------------------- vehicle detection model
-class Car_Classifier(object):
+class CarClassifier(object):
     """
     vehicle detection model mabager
     """
@@ -241,8 +237,8 @@ class Car_DC():
         print('=> car detection model initiated.')
 
         # initiate multilabel classifier
-        self.classifier = Car_Classifier(num_cls=19,
-                                         model_path=local_model_path)
+        self.classifier = CarClassifier(num_cls=19,
+                                        model_path=local_model_path)
 
         # initiate imgs_path
         self.imgs_path = [os.path.join(src_dir, x) for x in os.listdir(
@@ -428,7 +424,6 @@ class Car_DC():
         # retval = cv2.VideoCapture.grab()
         # 获得视频的格式
         videoCapture = cv2.VideoCapture(video_path)
-
 
         # 获得码率及尺寸
         fps = videoCapture.get(cv2.CAP_PROP_FPS)
