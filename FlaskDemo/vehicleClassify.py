@@ -1,4 +1,5 @@
 # coding=utf-8
+'''
 import os
 # 图像读取库
 from PIL import Image
@@ -126,4 +127,4 @@ class vehicleClassify:
                 predicted_label_name = label_name_dict[predicted_label]
                 print("{}\t{}".format(fpath, predicted_label_name))
                 return predicted_label_name
-
+'''
