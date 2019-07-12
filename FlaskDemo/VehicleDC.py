@@ -1,5 +1,5 @@
 # coding: utf-8
-# anther: 陈宏飞
+# author: 陈宏飞
 import os
 import sys
 import re
@@ -301,6 +301,7 @@ class Car_DC():
             # draw text
             cv2.putText(orig_img, labels[i], (pt_1[0], pt_1[1]),  # pt_1[1] + txt_size[1] + 4
                         cv2.FONT_HERSHEY_PLAIN, 2, [225, 255, 255], 2)
+        return labels
 
     def cls_draw_bbox(self, output, orig_img):
         """
@@ -328,7 +329,7 @@ class Car_DC():
                 car_color, car_direction, car_type = self.classifier.predict(ROI)
                 label = str(car_color + ' ' + car_direction + ' ' + car_type)
                 labels.append(label)
-                print('=> predicted label: ', label)
+                # print('=> predicted label: ', label)
             except:
                 print('no detected area')
                 return
@@ -412,11 +413,13 @@ class Car_DC():
             orig_img = cv2.cvtColor(np.asarray(
                 img), cv2.COLOR_RGB2BGR)  # RGB => BGR
             if type(output) != int:
-                self.cls_draw_bbox_write(output, orig_img, imgobj, x)
+                car_info = self.cls_draw_bbox_write(output, orig_img, imgobj, x)
                 dst_path = self.dst_dir + '/' + os.path.split(x)[1]
                 if not os.path.exists(dst_path):
                     cv2.imwrite(dst_path, orig_img)
-
+                return len(car_info)
+            else:
+                return 0
     def detect_classify_video(self, video_path, res_path):
         """
         detect in video frames

@@ -1,4 +1,4 @@
-# anther: 陈志鹏
+# author: 陈志鹏
 import db_provider
 import re
 import getpass

@@ -1,4 +1,4 @@
-# anther: 陈宏飞
+# author: 陈宏飞
 import json
 import numpy
 

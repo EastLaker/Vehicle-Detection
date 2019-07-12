@@ -11,13 +11,14 @@ import base64
 import urllib.parse
 import urllib.request
 import json
-# import cv2
+import cv2
 from flask_cors import *
 from vehicle_license_plate import Vehicle_License_Plate
 from VehicleDC import Car_DC
 from login import Sign
 from car_model import CarModelDetector
 from MyEncoder import MyEncoder
+from hyperlpr import *
 import tensorflow as tf
 
 app = Flask(__name__)   # 路由匹配
@@ -95,7 +96,7 @@ def api_upload():
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
-# 车牌识别 auther: 陈志鹏
+# 车牌识别 author: 陈志鹏
 @app.route('/up_license', methods=['POST', 'GET'], strict_slashes=False)
 def api_license():
     file_dir = os.path.join(basedir, 'license_plate_recognition')  # 图像存储路径为license_plate_recognition文件夹中
@@ -111,16 +112,18 @@ def api_license():
         f.save(os.path.join(file_dir, new_filename))
         # TODO 识别车牌
         license_detector = Vehicle_License_Plate(os.path.join(file_dir, new_filename))
-        # print(license_detector.vehicle_license_plate)
+        image = cv2.imread(os.path.join(file_dir, new_filename))
+        print(HyperLPR_PlateRecogntion(image))
         return json.dumps({"success": 0, "msg": "upload success", "car_license:": license_detector.vehicle_license_plate}
                           , ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
-# auther: 陈宏飞
+
+# author: 陈宏飞
 @app.route('/up_vehicle', methods=['POST', 'GET'], strict_slashes=False)
 def api_vehicle():
-    file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
+    file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为static/vehicle文件夹中
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     f = request.files['photo']
@@ -133,20 +136,29 @@ def api_vehicle():
         f.save(os.path.join(file_dir, new_filename))
         # TODO 检测图中的车辆
         DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
-        DR_model.detect_classify()
-        # 返回base64格式的图片
+        car_count = DR_model.detect_classify()
+        return json.dumps({"success": 0, "msg": "upload success", "car_count:": car_count, 'resultImage:': 'http://192.168.151.199:5000/vehicleResults/test.jpg'}, ensure_ascii=False)
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+
+
+# author: 陈宏飞
+@app.route('/read_detection', methods=['POST', 'GET'], strict_slashes=False)
+def api_read_detect_res():
+    try:
         with open(os.curdir + '/vehicleResults/test.jpg', 'rb') as img_f:
             img_stream = img_f.read()
             response = make_response(img_stream)
             response.headers['Content-Type'] = 'image/png'
             return response
-    else:
-        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+    except:
+        return json.dumps({"fail": 0, "msg": "download result fail"}, ensure_ascii=False)
 
-# auther: 陈宏飞
+
+# author: 陈宏飞
 @app.route('/up_video', methods=['POST', 'GET'], strict_slashes=False)
 def api_video():
-    file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
+    file_dir = os.path.join(basedir, 'static/vehicle')
     if not os.path.exists(file_dir):
         os.makedirs(file_dir)
     f = request.files['photo']
@@ -205,7 +217,6 @@ def api_info():
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
-
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
     if request.method == "GET":
@@ -229,6 +240,21 @@ def show_photo(filename):
     else:
         pass
 
+
+# show photo
+@app.route('/vehicleResults/<string:filename>', methods=['GET'])
+def show_result(filename):
+    file_dir = os.path.join(basedir, 'vehicleResults')
+    if request.method == 'GET':
+        if filename is None:
+            pass
+        else:
+            image_data = open(os.path.join(file_dir, '%s' % filename), "rb").read()
+            response = make_response(image_data)
+            response.headers['Content-Type'] = 'image/png'
+            return response
+    else:
+        pass
 
 # 注册
 @app.route('/sign_up', methods=['POST', 'GET'])

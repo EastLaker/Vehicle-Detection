@@ -1,4 +1,4 @@
-# anther: 陈宏飞
+# author: 陈宏飞
 from __future__ import division
 
 import torch
