@@ -170,6 +170,42 @@ def api_video():
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
+#外观属性识别
+@app.route('/up_info', methods=['POST','GET'], strict_slashes=False)
+def api_info():
+    file_dir = os.path.join(basedir, 'static/vehicle')
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+    f = request.files['photo']
+    if f and allowed_file(f.filename):
+        fname = secure_filename(f.filename)
+        print(fname)
+        new_filename = 'test.jpg'
+        f.save(os.path.join(file_dir, new_filename))
+        # 向百度发送请求
+        request_url2 = "https://aip.baidubce.com/rest/2.0/image-classify/v1/vehicle_attr"
+        # 二进制方式打开图片文件
+        file_path = os.path.join(file_dir, new_filename)
+        f = open(file_path, 'rb')
+        img = base64.b64encode(f.read())
+        params = {"image": img, "type": "vehicle_type,window_rain_eyebrow,roof_rack,skylight,in_car_item,rearview_item,copilot,driver_belt,copilot_belt,driver_visor,	copilot_visor,	direction"}
+        params = urllib.parse.urlencode(params).encode(encoding='UTF8')
+        access_token2 = "24.77db488047ec3fc092811a7e407122f4.2592000.1565399787.282335-16735578"
+        request_url2 = request_url2 + "?access_token=" + access_token2
+        request2 = urllib.request.Request(url=request_url2, data=params)
+        request2.add_header('Content-Type', 'application/x-www-form-urlencoded')
+        print(request2)
+        response = urllib.request.urlopen(request2)
+        content = response.read()
+        if content:
+            res = json.loads(content, encoding='UTF8')
+            print(res["vehicle_info"][0])
+        return json.dumps({"success": 0, "msg": "upload success", 'car info': res["vehicle_info"][0]}, ensure_ascii=False)
+    else:
+        return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
+
+
+
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
     if request.method == "GET":
