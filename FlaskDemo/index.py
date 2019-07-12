@@ -170,7 +170,7 @@ def api_video():
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
-#外观属性识别
+# auther: 朱明航
 @app.route('/up_info', methods=['POST','GET'], strict_slashes=False)
 def api_info():
     file_dir = os.path.join(basedir, 'static/vehicle')
