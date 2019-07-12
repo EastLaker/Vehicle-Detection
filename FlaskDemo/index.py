@@ -45,7 +45,7 @@ def upload_test():
 def login():
     render_template('index.html')
 
-
+# auther: 陈志鹏
 @app.route('/userlogin',methods=['POST','GET'])
 def userLogin():
     uname = request.form.get("uname")
@@ -95,7 +95,7 @@ def api_upload():
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
 
-# 车牌识别
+# 车牌识别 auther: 陈志鹏
 @app.route('/up_license', methods=['POST', 'GET'], strict_slashes=False)
 def api_license():
     file_dir = os.path.join(basedir, 'license_plate_recognition')  # 图像存储路径为license_plate_recognition文件夹中
@@ -117,7 +117,7 @@ def api_license():
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
-
+# auther: 陈宏飞
 @app.route('/up_vehicle', methods=['POST', 'GET'], strict_slashes=False)
 def api_vehicle():
     file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
@@ -143,8 +143,8 @@ def api_vehicle():
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
-
-@app.route('/up_vodeo', methods=['POST', 'GET'], strict_slashes=False)
+# auther: 陈宏飞
+@app.route('/up_video', methods=['POST', 'GET'], strict_slashes=False)
 def api_video():
     file_dir = os.path.join(basedir, 'static/vehicle')  # 图像存储路径为license_plate_recognition文件夹中
     if not os.path.exists(file_dir):
