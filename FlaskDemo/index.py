@@ -137,7 +137,8 @@ def api_vehicle():
         # TODO 检测图中的车辆
         DR_model = Car_DC(src_dir="static/vehicle/", dst_dir="vehicleResults/")
         car_count = DR_model.detect_classify()
-        return json.dumps({"success": 0, "msg": "upload success", "car_count:": car_count, 'resultImage:': 'http://192.168.151.199:5000/vehicleResults/test.jpg'}, ensure_ascii=False)
+        return json.dumps({"success": 0, "msg": "upload success", "car_count:": car_count,
+                           'resultImage:': 'http://http://101.132.226.19/:5000/vehicleResults/test.jpg'}, ensure_ascii=False)
     else:
         return json.dumps({"fail": 0, "msg": "upload fail"}, ensure_ascii=False)
 
