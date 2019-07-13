@@ -1,3 +1,65 @@
 # Vehicle-Detection
-##功能介绍
-##使用方法
+##运行环境
+本项目在服务器上运行时安装的依赖包如下：
+
+Package              Version
+
+absl-py              0.7.1<br>
+astor                0.8.0<br>
+chardet              2.3.0<br>
+Click                7.0<br>
+command-not-found    0.3<br>
+cycler               0.10.0<br>
+Flask                1.0.3<br>
+Flask-Cors           3.0.8<br>
+gast                 0.2.2<br>
+google-pasta         0.1.7<br>
+grpcio               1.21.1<br>
+gunicorn             19.9.0<br>
+h5py                 2.9.0<br>
+hyperlpr             0.0.1<br>
+itsdangerous         1.1.0<br>
+Jinja2               2.10.1<br>
+Keras                2.2.4<br>
+Keras-Applications   1.0.8<br>
+Keras-Preprocessing  1.1.0<br>
+kiwisolver           1.1.0<br>
+language-selector    0.1<br>
+Markdown             3.1.1<br>
+MarkupSafe           1.1.1v<br>
+matplotlib           3.1.1<br>
+meld3                1.0.2<br>
+numpy                1.16.4<br>
+opencv-python        4.1.0.25<br>
+Pillow               6.0.0<br>
+pip                  19.1.1<br>
+protobuf             3.8.0v<br>
+pycurl               7.43.0<br>
+pygobject            3.20.0<br>
+PyMySQL              0.9.3<br>
+pyparsing            2.4.0<br>
+python-apt           1.1.0b1+ubuntu0.16.4.5<br>
+python-dateutil      2.8.0<br>
+PyYAML               5.1.1<br>
+requests             2.9.1<br>
+scipy                1.3.0<br>
+selenium             3.141.0<br>
+setuptools           41.0.1<br>
+six                  1.10.0<br>
+ssh-import-id        5.5<br>
+supervisor           4.0.3<br>
+tensorboard          1.14.0<br>
+tensorflow           1.14.0<br>
+tensorflow-estimator 1.14.0<br>
+termcolor            1.1.0<br>
+torch                1.1.0<br>
+torchvision          0.3.0<br>
+tqdm                 4.32.2<br>
+ufw                  0.35<br>
+unattended-upgrades  0.1<br>
+urllib3              1.13.1<br>
+virtualenv           15.0.1<br>
+Werkzeug             0.15.4<br>
+wheel                0.29.0<br>
+wrapt                1.11.2<br>
+

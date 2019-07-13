@@ -464,7 +464,7 @@ class Car_DC():
                 img), cv2.COLOR_RGB2BGR)  # RGB => BGR
             if type(output) != int:
                 self.cls_draw_bbox(output, orig_img)
-                videoWriter.write(orig_img) # 写视频帧
+                videoWriter.write(orig_img)  # 写视频帧
 
             success, frame = videoCapture.read()  # 获取下一帧
 # -----------------------------------------------------------

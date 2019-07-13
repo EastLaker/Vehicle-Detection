@@ -17,7 +17,7 @@ model = keras.models.load_model("./car_model/carModel.h5")
 graph = tf.get_default_graph()
 
 # 读取
-f = open('car_model.txt', 'r')
+f = open('car_model.txt', 'r', encoding='utf-8')
 a = f.read()
 classes_dict = eval(a)
 f.close()

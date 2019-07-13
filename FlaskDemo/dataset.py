@@ -17,8 +17,8 @@ color_attrs = ['Black', 'Blue', 'Brown',
                      'Gray', 'Green', 'Pink',
                      'Red', 'White', 'Yellow']
 direction_attrs = ['Front', 'Rear']
-type_attrs = ['passengerCar', 'saloonCar',
-                    'shopTruck', 'suv', 'trailer', 'truck', 'van', 'waggon']
+type_attrs = ['小客车', '轿车',
+                    'shopTruck', 'suv', '拖车', '卡车', '小货车', 'waggon']
 
 
 class Vehicle(data.Dataset):
